@@ -1,0 +1,24 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+#root {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+.time-input .MuiSvgIcon-root.MuiSvgIcon-fontSizeMedium {
+    filter: invert(100%) sepia(17%) saturate(997%) hue-rotate(327deg) brightness(118%) contrast(112%);
+   
+}
+
+.apexcharts-legend-text {
+    color: #fff !important;
+    
+}
+
+.apexcharts-canvas {
+    margin: 0 auto !important;
+}
