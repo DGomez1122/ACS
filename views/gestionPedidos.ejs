@@ -1,0 +1,119 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css"> 
+    
+    <title>Gestion de Pedidos</title>
+    <style>      
+    
+    </style>
+  </head>
+  <body class="grid-container">
+    <header class="header"><h1><img src="ico.png" width="35" height="35"/> TECFOOD WEB</h1></header>    
+    <nav class="navbar">
+      <a href="gestionalimentos" class="estilogestion">Gestión Alimentos</a>
+      <a href="gestionclientes" class="estilogestion">Gestión Clientes</a>
+      <a href="gestiontiemposcomida" class="estilogestion">Tiempos Comida</a>
+      <a href="gestionpedidos" class="estilogestion">Gestión Pedidos</a>
+      <br>
+    </nav>
+
+    <aside class="sidebar">
+        <h2>Datos usuario</h2>
+        <br>
+        <strong> Nombre:<br> Jaime <br>
+            <br> Correo:<br> <%= correo %> <br>
+            <br>                      
+            <a href="/index" class="a-logout">Regresar</a>
+            <br>
+            <br>
+            <br>
+            <br>
+            <br>
+            
+    </aside>  
+    <h1>Gestion de pedidos</h1>
+    <br>
+    <form action="/filtrarPedidos" method="POST">
+        <input type="text" name="idPedido" id="idPedido" placeholder="Id" >
+        
+        <input type="submit" class="btn-filtrarG" value="Filtrar">
+    </form>
+    <table  class="gestionTiemposComida">
+      <thead class="gestionTiemposComida">
+        <tr>
+          <th class="gestionTiemposComida" scope="col">ID</th>
+          <th class="gestionTiemposComida" scope="col">FECHA</th>
+          <th class="gestionTiemposComida" scope="col">CARNE</th>
+          <th class="gestionTiemposComida" scope="col">CEDULA</th>
+          <th class="gestionTiemposComida" scope="col">NOMBRE COMPLETO</th>
+          <th class="gestionTiemposComida" scope="col">CORREO</th>
+          <th class="gestionTiemposComida" scope="col">ALIMENTOS</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach((pedidos)=>{ %>
+        
+        <tr>
+          <td class="gestionTiemposComida"  ><%= pedidos.id %></td>
+          <td class="gestionTiemposComida" ><%= pedidos.fecha %></td>
+          <td class="gestionTiemposComida" ><%= pedidos.carne %></td>
+          <td class="gestionTiemposComida" ><%= pedidos.cedula %></td>
+          <td class="gestionTiemposComida" ><%= pedidos.nombreCompleto %></td>
+          <td class="gestionTiemposComida" ><%= pedidos.correo %></td>
+          <td class="gestionTiemposComida" ><%= pedidos.alimentos %></td>
+        </tr>
+
+        <% }) %>
+      </tbody>
+    </table>
+    <br>
+    <form action="/modificarPedidos" method="POST">
+        <h3>Modificar Pedidos</h3>
+        <br><br>
+        <input type="text" name="idPedido" id="idPedido" placeholder="ID Pedido" size="50">
+        <br><br>
+        <input type="text" name="fechaPedido" id="fechaPedido" placeholder="Fecha" size="50">
+        <br><br>
+        <input type="text" name="carnePedido" id="carnePedido" placeholder="No Carné" size="50">
+        <br><br>
+        <input type="text" name="cedulaPedido" id="cedulaPedido" placeholder="Cedula" size="50">
+        <br><br>
+        <input type="text" name="nombrePedido" id="nombrePedido" placeholder="Nombre completo" size="50">
+        <br><br>
+        <input type="text" name="correoPedido" id="correoPedido" placeholder="Correo" size="50">
+          <br><br>
+          <input type="text" name="alimentosPedido" id="alimentosPedido" placeholder="Alimentos" size="50">
+          <br><br>
+          <input type="submit" class="btn-register" id="modificarpedido" value="Modificar">
+        </form>
+        <form action="/eliminarPedido" method="POST">
+          <br><br>
+          <h3>Eliminar Pedido</h3>
+          <br><br>
+          <input type="text" name="idPedido" id="idPedido" placeholder="ID Pedido" size="50">
+          <br><br>
+          <input type="submit" class="btn-register" id="eliminarpedido" value="Eliminar">
+        </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <% if (typeof alert != "undefined")  { %>
+        <script>
+        Swal.fire({
+            title:'<%= alertTitle %>',
+            text:'<%= alertMessage %>',
+            icon:'<%= alertIcon %>',
+            showConfirmButton: <%= showConfirmButton %>,
+            timer: <%= timer %>
+        }).then(()=>{
+            window.location='/<%= ruta %>'
+        })
+        </script>
+    <% } %>
+  </body>
+</html>

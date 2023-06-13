@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    
+    <link href="https://cdn.datatables.net/1.12.1/css/dataTables.bootstrap5.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="resources/css/style.css"> 
+    
+    <title>Gestion Tiempos de Comida</title>
+    <style>      
+    
+    </style>
+  </head>
+  <body class="grid-container">
+    <header class="header"><h1><img src="ico.png" width="35" height="35"/> TECFOOD WEB</h1></header>    
+    <nav class="navbar">
+      <a href="gestionalimentos" class="estilogestion">Gestión Alimentos</a>
+      <a href="gestionclientes" class="estilogestion">Gestión Clientes</a>
+      <a href="gestiontiemposcomida" class="estilogestion">Tiempos Comida</a>
+      <a href="gestionpedidos" class="estilogestion">Gestión Pedidos</a>
+      <br>
+    </nav>
+
+    <aside class="sidebar">
+      <h2>Datos usuario</h2>
+      <br>
+      <strong> Nombre:<br> Jaime <br>
+          <br> Correo:<br> <%= correo %> <br>
+          <br>                      
+          <a href="/index" class="a-logout">Regresar</a>
+          <br> 
+          <br>
+          <br>
+          <br>
+          <br>
+          <br>
+          
+  </aside>  
+    <h1>Gestion de tiempos de comida</h1>
+    <h3 class="tiempoComida">Tiempo de Comida</h1>
+    <h3 class="tipoComida">Tipo de comida</h3>
+    <form action="/seleccionGestionTiemposComida" method="POST">
+    <div class="custom-selectG" style="width: 200px">
+      <div class="select">
+        <select id="tiempoC" name="seleccionTiempo">
+        
+          <option value="Desayuno">Desayuno</option>
+          <option value="Almuerzo">Almuerzo</option>
+          <option value="Cena">Cena</option>
+        </select>
+      </div>
+      </div>
+      <div class="custom-selecttG" style="width: 200px">
+        <div class="select">
+          <select name="seleccionTipo">
+            <option value="Plato Principal">Plato Principal</option>
+            <option value="Bebida">Bebida</option>
+            <option value="Postre">Postre</option>
+          </select>
+        </div>
+      </div>
+      <input class="btn-filtrarG" type="submit" value=Filtrar> 
+ 
+    </form>
+    <table  class="gestionTiemposComida">
+      <thead class="gestionTiemposComida">
+        <tr>
+          <th class="gestionTiemposComida">ID</th>
+          <th class="gestionTiemposComida" scope="col">NOMBRE</th>
+          <th class="gestionTiemposComida" scope="col">PRECIO</th>
+          <th class="gestionTiemposComida" scope="col">DISPONIBILIDAD</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% results.forEach((comida)=>{ %>
+        
+        <tr>
+          <td class="gestionTiemposComida"><%= comida.id %></td>
+          <td class="gestionTiemposComida"><%= comida.Nombre %></td>
+          <td class="gestionTiemposComida"><%= comida.Precio %></td>
+          <td class="gestionTiemposComida"><%= comida.Disponibilidad %></td>
+        </tr>
+
+        <% }) %>
+      </tbody>
+    </table>
+    <h2>Gestion de disponibilidad</h2>
+    <form action="/disponibilidad" method="POST">
+      <input type="text" name="idComida" id="idComida" placeholder="Id" >
+      <div class="custom-selectd" style="width: 200px">
+      <div class="select">
+        <select  id="selectDis" name="seleccionDisponible">
+          <option value="Si">Si</option>
+          <option value="No">No</option>
+         
+        </select>
+      </div>
+      </div>
+      <input type="submit" class="btn-confirmarG" value="Confirmar">
+    </form>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <% if (typeof alert != "undefined")  { %>
+      <script>
+      Swal.fire({
+          title:'<%= alertTitle %>',
+          text:'<%= alertMessage %>',
+          icon:'<%= alertIcon %>',
+          showConfirmButton: <%= showConfirmButton %>,
+          timer: <%= timer %>
+      }).then(()=>{
+          window.location='/<%= ruta %>'
+      })
+      </script>
+    <% } %>
+
+    
+    
+   
+    </script>
+  </body>
+</html>
